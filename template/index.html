@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+
+{% block content %}
+
+<!-- HERO ================================================================ -->
+<section class="hero" id="home">
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">Business Strategy &amp; Growth Advisory</p>
+      <h1 class="hero__headline">Smart solutions.<br>Stronger growth.<br>Your future starts with EVEST.</h1>
+      <p class="hero__sub">We work alongside founders and operators to turn scattered priorities into a plan — covering strategy, growth marketing, financial advisory, and the operational work that makes it real.</p>
+      <div class="hero__ctas">
+        <a href="#contact" class="btn btn--primary">Get Started {{ icon("arrow-right", "icon icon--sm") }}</a>
+        <a href="#services" class="btn btn--ghost">Explore Services</a>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <svg class="hero__chart" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="20" x2="40" y2="270" class="chart-axis"></line>
+        <line x1="40" y1="270" x2="400" y2="270" class="chart-axis"></line>
+        <line x1="40" y1="210" x2="400" y2="210" class="chart-grid"></line>
+        <line x1="40" y1="150" x2="400" y2="150" class="chart-grid"></line>
+        <line x1="40" y1="90" x2="400" y2="90" class="chart-grid"></line>
+        <path class="chart-line" d="M40,240 L110,220 L180,190 L250,140 L320,95 L390,50" pathLength="1"></path>
+        <circle class="chart-dot" cx="390" cy="50" r="5"></circle>
+        <text x="300" y="35" class="chart-label">+128%</text>
+      </svg>
+      <div class="hero__card">
+        <span class="hero__card-label">Client growth, 18 months</span>
+        <span class="hero__card-value">128%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT =============================================================== -->
+<section class="about" id="about">
+  <div class="section-inner about__grid">
+    <div class="about__copy">
+      <p class="section-eyebrow">About EVEST</p>
+      <h2 class="section-heading">A strategy partner, not another vendor.</h2>
+      <p>EVEST was founded on a simple observation: most businesses don't fail from a lack of ambition — they stall from a lack of a workable plan. We exist to close that gap, working directly with leadership teams on the strategy, financial, and operational decisions that determine what happens next.</p>
+      <p>Our mission is to make good strategy accessible to businesses that don't have an in-house team for it. Our vision is a working world where growth decisions are made on evidence, not instinct alone. Every recommendation we make is one we'd act on ourselves.</p>
+    </div>
+
+    <div class="about__stats" role="list">
+      {% for stat in stats %}
+      <div class="stat" role="listitem">
+        <span class="stat__value">{{ stat.value }}</span>
+        <span class="stat__label">{{ stat.label }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES ============================================================ -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <p class="section-eyebrow">What we do</p>
+    <h2 class="section-heading">Services built around outcomes.</h2>
+    <p class="section-lede">Five practice areas, one team — brought together depending on what your business actually needs next.</p>
+
+    <div class="services__grid">
+      {% for s in services %}
+      <article class="service-card">
+        <span class="service-card__index">0{{ loop.index }}</span>
+        {{ icon(s.icon, "icon icon--lg service-card__icon") }}
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.summary }}</p>
+        <a href="#contact" class="service-card__link">Learn More {{ icon("arrow-right", "icon icon--sm") }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- WHY EVEST =========================================================== -->
+<section class="why" id="why-evest">
+  <div class="section-inner">
+    <p class="section-eyebrow">Why choose EVEST</p>
+    <h2 class="section-heading">What working with us is actually like.</h2>
+
+    <div class="why__grid">
+      {% for w in why_evest %}
+      <div class="why__item">
+        {{ icon(w.icon, "icon why__icon") }}
+        <div>
+          <h3>{{ w.title }}</h3>
+          <p>{{ w.text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS ========================================================= -->
+<section class="process" id="how-it-works">
+  <div class="section-inner">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-heading">Four steps, start to finish.</h2>
+
+    <div class="process__timeline">
+      {% for p in process_steps %}
+      <div class="process__step">
+        <span class="process__num">{{ p.step }}</span>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS ========================================================= -->
+<section class="testimonials" id="testimonials">
+  <div class="section-inner">
+    <p class="section-eyebrow">Client feedback</p>
+    <h2 class="section-heading">What clients say.</h2>
+    <p class="section-lede">Illustrative quotes shown while we collect verified reviews from real clients.</p>
+
+    <div class="testimonials__grid">
+      {% for t in testimonials %}
+      <figure class="testimonial-card">
+        {{ icon("star", "icon icon--sm") }}
+        <blockquote>
+          <p>&ldquo;{{ t.quote }}&rdquo;</p>
+        </blockquote>
+        <figcaption>
+          <span class="testimonial-card__name">{{ t.name }}</span>
+          <span class="testimonial-card__role">{{ t.role }}</span>
+        </figcaption>
+        <div class="testimonial-card__rating" aria-label="{{ t.rating }} out of 5 stars">
+          {% for i in range(5) %}{{ icon("star", "icon icon--xs" + (" is-filled" if i < t.rating else "")) }}{% endfor %}
+        </div>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ =================================================================== -->
+<section class="faq" id="faq">
+  <div class="section-inner section-inner--narrow">
+    <p class="section-eyebrow">Questions</p>
+    <h2 class="section-heading">Frequently asked questions.</h2>
+
+    <div class="faq__list">
+      {% for f in faqs %}
+      <details class="faq__item" {% if loop.first %}open{% endif %}>
+        <summary>
+          <span>{{ f.q }}</span>
+          {{ icon("chevron-down", "icon faq__chevron") }}
+        </summary>
+        <p>{{ f.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / LEAD FORM =================================================== -->
+<section class="contact" id="contact">
+  <div class="section-inner contact__grid">
+    <div class="contact__intro">
+      <p class="section-eyebrow section-eyebrow--light">Get started</p>
+      <h2 class="section-heading section-heading--light">Let's build your next success story.</h2>
+      <p>Tell us a little about your business and what you're trying to solve. We'll reply within one business day to schedule a free consultation.</p>
+
+      <ul class="contact__details">
+        <li>{{ icon("phone") }}<a href="tel:{{ company.phone|replace(' ', '') }}">{{ company.phone }}</a></li>
+        <li>{{ icon("mail") }}<a href="mailto:{{ company.email }}">{{ company.email }}</a></li>
+        <li>{{ icon("map-pin") }}<span>{{ company.address }}</span></li>
+      </ul>
+    </div>
+
+    <form class="contact__form" method="POST" action="{{ url_for('contact') }}" novalidate>
+      {{ form.csrf_token }}
+      <!-- Honeypot field — hidden from real users via CSS, catches simple bots -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-row">
+        <label for="full_name">Full Name</label>
+        {{ form.full_name(id="full_name", placeholder="Jordan Blake") }}
+      </div>
+
+      <div class="form-row form-row--split">
+        <div>
+          <label for="email">Email</label>
+          {{ form.email(id="email", placeholder="jordan@company.com") }}
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          {{ form.phone(id="phone", placeholder="+1 555 123 4567") }}
+        </div>
+      </div>
+
+      <div class="form-row form-row--split">
+        <div>
+          <label for="company_name">Company Name</label>
+          {{ form.company_name(id="company_name", placeholder="Optional") }}
+        </div>
+        <div>
+          <label for="service_interested">Service Interested In</label>
+          {{ form.service_interested(id="service_interested") }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="message">Message</label>
+        {{ form.message(id="message", rows="4", placeholder="What are you hoping to solve?") }}
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full">Let's Build Your Next Success Story</button>
+      <p class="contact__fineprint">By submitting, you agree to our <a href="{{ url_for('privacy') }}">Privacy Policy</a>.</p>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
